@@ -25,6 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.hse.speakeasy.app.screen.favorite.FavoritesScreen
 import ru.hse.speakeasy.app.screen.history.HistoryScreen
 import ru.hse.speakeasy.app.screen.translation.TranslationScreen
 import ru.hse.speakeasy.app.ui.theme.SpeakEasyTheme
@@ -57,13 +58,13 @@ class MainActivity : ComponentActivity() {
 //                composable("camera") {}
                 composable("translate") { TranslationScreen() }
                 composable("history") { HistoryScreen() }
-//                composable("favorite") {}
+                composable("favorite") { FavoritesScreen() }
             }
         }
     }
 
     //private val Destinations = listOf("chat", "camera", "translate", "history", "favorite")
-    private val Destinations = listOf("translate", "history")
+    private val Destinations = listOf("translate", "history", "favorite")
 
     @Composable
     fun BottomNavigationBar(navController: NavController) {
@@ -78,6 +79,7 @@ class MainActivity : ComponentActivity() {
         val icons = listOf(
             ImageVector.vectorResource(R.drawable.ic_translate),
             ImageVector.vectorResource(R.drawable.ic_history),
+            ImageVector.vectorResource(R.drawable.ic_fav),
         )
 
 

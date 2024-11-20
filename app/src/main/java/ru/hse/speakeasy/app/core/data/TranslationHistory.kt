@@ -11,4 +11,5 @@ data class TranslationHistory(
     val sourceText: String,
     val translatedText: String,
     val timestamp: Long = Date().time,
+    val isFavorite: Boolean = false
 )
