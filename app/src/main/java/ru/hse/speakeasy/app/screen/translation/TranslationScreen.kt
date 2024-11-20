@@ -13,6 +13,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.hse.speakeasy.app.ui.LanguageSelector
 import ru.hse.speakeasy.app.ui.TextInput
 import ru.hse.speakeasy.app.ui.TranslateButton
 import ru.hse.speakeasy.app.ui.TranslationResult
@@ -49,9 +50,24 @@ fun TranslationScreen(
         uiState.value.translatedText?.let {
             TranslationResult(
                 result = it,
-                modifier = Modifier.padding(horizontal = 16.dp),
+                isFavorite = uiState.value.isFavorite,
+                onFavoriteClick = { viewModel.toggleFavorite() },
+                modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
+
     }
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        TopAppBar(title = { Text("Translation App") })
+
+        LanguageSelector(
+            sourceLanguage = uiState.value.sourceLang,
+            targetLanguage = uiState.value.targetLang,
+            onSourceLanguageChange = { viewModel.updateSourceLanguage(it) },
+            onTargetLanguageChange = { viewModel.updateTargetLanguage(it) },
+            onSwapLanguages = { viewModel.swapLanguages() }
+        )
 
 }
